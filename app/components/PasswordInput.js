@@ -1,6 +1,6 @@
 import React from 'react'
-import passwordMeter from '../../lib/passwordMeter'
-import './PasswordInput.scss'
+// import passwordMeter from '../../lib/passwordMeter'
+// import './PasswordInput.scss'
 
 export default class PasswordInput extends React.Component {
 
@@ -17,8 +17,9 @@ export default class PasswordInput extends React.Component {
   }
 
   render() {
+
     const strength = passwordMeter(this.state.password)
-    return <div>
+    return <div style={{ backgroundColor: 'red'}}>
       <input type="password" 
         onChange={this.handleChange} />
       <span className={strength}>{strength}</span>

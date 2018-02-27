@@ -1,5 +1,7 @@
 import React from 'react'
-import PasswordInput from './PasswordInput'
+import BootstrapTable from './BootstrapTable'
+import LeaderBoard from './LeaderBoard'
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 
 export default class App extends React.Component {
 
@@ -8,11 +10,28 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <div>
-      <h1>hello world</h1>
-      <label>example component</label>
-      <PasswordInput />
+    return (
+    <div>
+      <div className="top">
+        <h1>StockCards</h1>
+        <input />
+        <button>Search</button>
+      </div>
+      <div className='side'>
+        <LeaderBoard />
+      </div>
+      <div className='main'>  
+        <BootstrapTable />
+        <div className="assets">
+          {/* <StockCard />
+          <StockCard />
+          <StockCard />
+          <StockCard />
+          <StockCard />
+          <StockCard /> */}
+        </div>
+      </div>  
     </div>
+    )
   }
-
 }
