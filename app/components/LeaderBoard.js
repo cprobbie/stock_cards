@@ -2,7 +2,7 @@ import React from 'react'
 import { Header, Image, Table } from 'semantic-ui-react'
 
 const LeaderBoard = () => (
-  <Table basic='very' celled collapsing>
+  <Table basic='very' celled collapsing style={{ width: 200, margin: '0 auto'}} compact='very' >
     <Table.Header>
       <Table.Row>
         <Table.HeaderCell>Player</Table.HeaderCell>
@@ -16,7 +16,6 @@ const LeaderBoard = () => (
           <Header as='h4' image>
             <Header.Content>
               Lena
-              <Header.Subheader>Human Resources</Header.Subheader>
             </Header.Content>
           </Header>
         </Table.Cell>
@@ -29,7 +28,6 @@ const LeaderBoard = () => (
           <Header as='h4' image>
             <Header.Content>
               Matthew
-              <Header.Subheader>Fabric Design</Header.Subheader>
             </Header.Content>
           </Header>
         </Table.Cell>
@@ -43,7 +41,6 @@ const LeaderBoard = () => (
 
             <Header.Content>
               Lindsay
-              <Header.Subheader>Entertainment</Header.Subheader>
             </Header.Content>
           </Header>
         </Table.Cell>
@@ -56,7 +53,6 @@ const LeaderBoard = () => (
           <Header as='h4' image>
             <Header.Content>
               Mark
-              <Header.Subheader>Executive</Header.Subheader>
             </Header.Content>
           </Header>
         </Table.Cell>

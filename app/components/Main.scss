@@ -1,0 +1,15 @@
+.main {
+  display: inline-block;
+  background-color: white;
+  width: 74%;
+  vertical-align: top;
+  // min-width: 1100px;
+  padding: 2% 3%;
+  // float: right;
+}
+
+.cardContainer{
+  border: 1px solid green;
+  display: flex;
+  justify-content: space-between;
+}

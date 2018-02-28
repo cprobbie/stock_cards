@@ -4,12 +4,15 @@ require('./style.css')
 import React from 'react'
 import ReactDom from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import App from './components/App'
 
 const render = Component => {
   ReactDom.render(
     <AppContainer>
-      <Component />
+      <MuiThemeProvider>
+        <Component />
+      </MuiThemeProvider>
     </AppContainer>,
     document.querySelector('#app')
   )
