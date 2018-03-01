@@ -74,7 +74,7 @@ export default class App extends React.Component {
   onQtyChange(e) {
     this.setState({
       qty: e.target.value,
-      value: e.target.value * this.state.price
+      value: (e.target.value * this.state.price).toFixed(2)
     })
   }
 
@@ -110,13 +110,22 @@ export default class App extends React.Component {
     }))
   }
 
+  updateCards(code){
+    var response
+    const localDomain = 'http://localhost:4567/quote/' + 'asx:' + code
+    return fetch(localDomain)
+      .then(res => res.json())
+      .then(res => [res.name, res.l, res.c, res.cp])
+    
+  }
+
   handleDraw(){
     console.log('drawn!')
     const STOCKS = ['agl', 'amc', 'amp', 'anz', 'apa', 'all', 'asx', 'azj', 'bhp', 'bxb', 'ctx', 'cba', 'cpu', 'csl', 'dxs', 'fmg','gmg', 'gpt', 'ipl', 'iag', 'jhx', 'llc', 'mqg', 'mpl', 'mgr', 'nab', 'ncm', 'osh', 'ori', 'org', 'qan', 'qbe', 'rhc', 'rio', 'sto', 'scg', 'shl', 's32', 'sgp', 'sun', 'syd', 'tls', 'tcl', 'twe', 'vcx', 'wes', 'wfd', 'wbc', 'wpl', 'wow'] ;
     let randomStock = STOCKS[Math.floor((Math.random() * 50))];
     let localDomain = 'http://localhost:4567/quote/' + 'asx:' + randomStock
-    // let hostedDomain = 'https://morning-scrubland-59655.herokuapp.com/details'
-    fetch(localDomain)
+    let hostedDomain = 'stockcards-backend.herokuapp.com' + 'asx:' + randomStock
+    fetch(hostedDomain)
       .then(res => res.json())
       .then(res => this.setState({
         symbol: res.symbol,
@@ -156,7 +165,7 @@ export default class App extends React.Component {
         <input placeholder='Enter stock code' style={{fontSize:22, height:50, borderRadius:8}} onChange={this.onInputChange} />
       </div>
         <RaisedButton label="SEARCH" fullWidth={true} primary={true} onClick={this.handleToggle}/>
-      <div className='side' style={{ backgroundColor: 'lightblue', width: 300, display: 'inline-block' }}>
+        <div className='side' style={{ backgroundColor: 'rgba(35, 189, 206, 0.1)', width: 300, display: 'inline-block' }}>
         <p style={{width: 150, margin: '30px auto'}}>Draw a StockCard from the stock deck below to buy stocks</p>
           <RaisedButton label="DRAW" primary={true} style={{height: 280, width: 200, borderRadius: 8, margin: '0px 50px' }} onClick={this.handleDraw} />
         <p style={{width: 150, margin: '15px auto'}} >The deck includes ASX50 stocks which weight about 63% of the entire ASX</p>
@@ -168,6 +177,8 @@ export default class App extends React.Component {
         stockValue= {this.state.stockValue}
         profit= {this.state.profit}
         holding= {this.state.holding}
+        holdingObj={this.state.holdingObj}
+        updateCards={this.updateCards}
       />
       <Drawer
         docked={false}
@@ -225,7 +236,7 @@ export default class App extends React.Component {
         />
         <Line data={data} />
       </Drawer>
-      <footer style={{backgroundColor:'yellow'}} >StockCards 2018 by Robbie Cheng</footer>
+        <footer style={{ height: 50 }} ><p style={{ marginTop: 10, textAlign: 'center'}} >StockCards 2018 by Robbie Cheng</p></footer>
     </div>
     )
   }

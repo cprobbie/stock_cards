@@ -19,7 +19,7 @@ const DetailList = (props) => (
     </List>
     <List style={style}>
       <ListItem primaryText="N/A" secondaryText="Ranking" />
-      <ListItem primaryText={'$'+(props.cashAccount+props.stockValue)} secondaryText="Total Asset" />
+      <ListItem primaryText={'$'+(props.cashAccount+props.stockValue).toFixed(2)} secondaryText="Total Asset" />
     </List>
     <Divider />
   </div>

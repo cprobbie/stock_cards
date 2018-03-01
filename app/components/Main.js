@@ -5,6 +5,11 @@ import Card from './Card'
 
 export default function Main (props){
   console.log(props)
+  const holdingObj = props.holdingObj
+  const codes = Object.keys(holdingObj)
+  console.log(codes)
+  const amount = Object.values(holdingObj)
+
   return (
     <div className='main'>
       <div className="account">
@@ -19,9 +24,15 @@ export default function Main (props){
       <div className="assets">
         <h3 style={{margin:'30px 0'}} >MY ASSETS</h3>
         <div className='cardContainer'>
-          <Card />
-          <Card />
-          <Card />
+          {amount.map(function(code, index){
+            return <Card 
+            key={index} 
+            index={index} 
+            amount={amount} 
+            codes={codes}
+            updateCards={props.updateCards}
+            />
+          })}
         </div>
       </div>
     </div>  

@@ -15,7 +15,7 @@ const LeaderBoard = () => (
         <Table.Cell>
           <Header as='h4' image>
             <Header.Content>
-              Lena
+              Player1
             </Header.Content>
           </Header>
         </Table.Cell>
@@ -27,7 +27,7 @@ const LeaderBoard = () => (
         <Table.Cell>
           <Header as='h4' image>
             <Header.Content>
-              Matthew
+              Player2
             </Header.Content>
           </Header>
         </Table.Cell>
@@ -40,7 +40,7 @@ const LeaderBoard = () => (
           <Header as='h4' image>
 
             <Header.Content>
-              Lindsay
+              Player3
             </Header.Content>
           </Header>
         </Table.Cell>
@@ -52,7 +52,7 @@ const LeaderBoard = () => (
         <Table.Cell>
           <Header as='h4' image>
             <Header.Content>
-              Mark
+              Player4
             </Header.Content>
           </Header>
         </Table.Cell>

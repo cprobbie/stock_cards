@@ -37,7 +37,7 @@ export default function BigCardTrade(props) {
           </ul>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-around', margin: '10px 10px' }} >
-          <input style={{ height: 40, fontSize: 18 }} type='number' onChange={props.onQtyChange} />
+          <input style={{ height: 40, fontSize: 18 }} type='number' min='0' step='1' onChange={props.onQtyChange} />
           <span style={{ fontSize: 30 }} >Value: {props.value}</span>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-around' }}>
