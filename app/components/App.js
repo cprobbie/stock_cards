@@ -5,8 +5,10 @@ import LeaderBoard from './LeaderBoard'
 import Main from "./Main"
 import Drawer from 'material-ui/Drawer';
 import BigCard from './BigCard';
+import BigCardTrade from './BigCardTrade'
 import LineChart from 'react-chartkick';
 import { Line } from 'react-chartjs-2';
+import logo from './image/logo.png'
 
 const data = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -35,59 +37,195 @@ const data = {
   ]
 };
 
-
 export default class App extends React.Component {
 
   constructor(props) {
     super(props)
     this.handleClose = this.handleClose.bind(this)
     this.handleToggle = this.handleToggle.bind(this)
-    this.state = { open: false };
+    this.onInputChange = this.onInputChange.bind(this)
+    this.handleDraw = this.handleDraw.bind(this)
+    this.onQtyChange = this.onQtyChange.bind(this)
+    this.buyShare = this.buyShare.bind(this)
+    this.state = { 
+      open: false,
+      openTrade: false,
+      input: ',',
+      cashAccount: 10000,
+      stockValue: 0,
+      profit: 0,
+      holding: 0,
+      holdingObj:{}
+    };
   }
 
-  handleToggle() {
-    console.log('button clicked', this)
-    // if (!this.refs.myRef) return;
+  buyShare(){
+    let code = this.state.symbol
+    console.log(code)
+    let holdingObj = this.state.holdingObj;
+    holdingObj[code] = this.state.qty;
+    console.log(this.state.holdingObj)
     this.setState({
-      open: !this.state.open
+      holdingObj: holdingObj,
+      cashAccount: this.state.cashAccount - this.state.value - 20
     })
   }
 
-  handleClose() {
-    console.log('button clicked')
+  onQtyChange(e) {
     this.setState({
-      open: false
+      qty: e.target.value,
+      value: e.target.value * this.state.price
+    })
+  }
+
+  onInputChange(e) {
+    this.setState({ input: e.target.value });
+  }
+
+  handleToggle() {
+    console.log(this.state.input);
+    // const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    let localDomain = 'http://localhost:4567/quote/' + this.state.input
+    // let hostedDomain = 'https://morning-scrubland-59655.herokuapp.com/details'
+    fetch(localDomain)
+    .then(res => res.json())
+    .then(res => this.setState({
+      symbol: res.symbol,
+      name: res.name,
+      price: res.l,
+      exchange: res.e,
+      change: res.c,
+      pChange: res.cp + '%',
+      openPrice: res.op,
+      dayHi: res.hi,
+      dayLo: res.lo,
+      vol: res.vo,
+      hi52: res.hi52,
+      lo52: res.lo52,
+      marketCap: res.mc,
+      pe: res.pe,
+      eps: res.eps,
+      dividend: res.dy + '%',
+      open: !this.state.open
+    }))
+  }
+
+  handleDraw(){
+    console.log('drawn!')
+    const STOCKS = ['agl', 'amc', 'amp', 'anz', 'apa', 'all', 'asx', 'azj', 'bhp', 'bxb', 'ctx', 'cba', 'cpu', 'csl', 'dxs', 'fmg','gmg', 'gpt', 'ipl', 'iag', 'jhx', 'llc', 'mqg', 'mpl', 'mgr', 'nab', 'ncm', 'osh', 'ori', 'org', 'qan', 'qbe', 'rhc', 'rio', 'sto', 'scg', 'shl', 's32', 'sgp', 'sun', 'syd', 'tls', 'tcl', 'twe', 'vcx', 'wes', 'wfd', 'wbc', 'wpl', 'wow'] ;
+    let randomStock = STOCKS[Math.floor((Math.random() * 50))];
+    let localDomain = 'http://localhost:4567/quote/' + 'asx:' + randomStock
+    // let hostedDomain = 'https://morning-scrubland-59655.herokuapp.com/details'
+    fetch(localDomain)
+      .then(res => res.json())
+      .then(res => this.setState({
+        symbol: res.symbol,
+        name: res.name,
+        price: res.l,
+        exchange: res.e,
+        change: res.c,
+        pChange: res.cp + '%' ,
+        openPrice: res.op,
+        dayHi: res.hi,
+        dayLo: res.lo,
+        vol: res.vo,
+        hi52: res.hi52,
+        lo52: res.lo52,
+        marketCap: res.mc,
+        pe: res.pe,
+        eps: res.eps,
+        dividend: res.dy + '%',
+        openTrade: !this.state.openTrade,
+        qty: '',
+        value: 0
+      }))
+  }
+
+  handleClose() {
+    this.setState({
+      open: false,
+      openTrade: false
     })
   }
 
   render() {
     return (
     <div>
-      <div className="top" style={{backgroundColor: 'yellow', display:'flex', justifyContent:'space-around'}} >
-        <h1>StockCards</h1>
-        <input />
+        <div className="top" style={{ backgroundColor: 'white', display: 'flex', justifyContent: 'center', alignItems:'flex-end'}} >
+        <img src={logo} />
+        <input placeholder='Enter stock code' style={{fontSize:22, height:50, borderRadius:8}} onChange={this.onInputChange} />
       </div>
         <RaisedButton label="SEARCH" fullWidth={true} primary={true} onClick={this.handleToggle}/>
       <div className='side' style={{ backgroundColor: 'lightblue', width: 300, display: 'inline-block' }}>
-        <p style={{width: 150, margin: '30px auto'}}>Draw a StockCard from the Stock deck to buy stocks</p>
-          <RaisedButton label="DRAW" primary={true} style={{height: 280, width: 200, borderRadius: 8, margin: '0px 50px' }} />
+        <p style={{width: 150, margin: '30px auto'}}>Draw a StockCard from the stock deck below to buy stocks</p>
+          <RaisedButton label="DRAW" primary={true} style={{height: 280, width: 200, borderRadius: 8, margin: '0px 50px' }} onClick={this.handleDraw} />
         <p style={{width: 150, margin: '15px auto'}} >The deck includes ASX50 stocks which weight about 63% of the entire ASX</p>
         <h3 style={{ width: 150, margin: '25px auto'}}>LeaderBoard</h3>
         <LeaderBoard />       
       </div>
-      <Main />
+      <Main
+        cashAccount= {this.state.cashAccount}
+        stockValue= {this.state.stockValue}
+        profit= {this.state.profit}
+        holding= {this.state.holding}
+      />
       <Drawer
-        ref="myRef"
         docked={false}
         width={570}
         open={this.state.open}
         onRequestChange={(open) => this.setState({ open })}
       >
-        <BigCard />
-        <p style={{textAlign:'center'}} >* $20 brokage fee is charged on each transaction</p>
+        <BigCard
+        symbol={this.state.symbol}
+        name={this.state.name}
+        price={this.state.price}
+        exchange={this.state.exchange}
+        change={this.state.change}
+        pChange={this.state.pChange}
+        openPrice={this.state.openPrice}
+        dayHi={this.state.dayHi}
+        dayLo={this.state.dayLo}
+        vol={this.state.vol}
+        hi52={this.state.hi52}
+        lo52={this.state.lo52}
+        marketCap={this.state.marketCap}
+        pe={this.state.pe}
+        eps={this.state.eps}
+        dividend={this.state.dividend}
+        />
         <Line data={data} />
       </Drawer>
-      <footer style={{backgroundColor:'yellow'}} >2018</footer>
+      <Drawer
+        docked={false}
+        width={570}
+        open={this.state.openTrade}
+        onRequestChange={(openTrade) => this.setState({ openTrade })}
+      >
+        <BigCardTrade
+          symbol={this.state.symbol}
+          name={this.state.name}
+          price={this.state.price}
+          exchange={this.state.exchange}
+          change={this.state.change}
+          pChange={this.state.pChange}
+          openPrice={this.state.openPrice}
+          dayHi={this.state.dayHi}
+          dayLo={this.state.dayLo}
+          vol={this.state.vol}
+          hi52={this.state.hi52}
+          lo52={this.state.lo52}
+          marketCap={this.state.marketCap}
+          pe={this.state.pe}
+          eps={this.state.eps}
+          dividend={this.state.dividend}
+          qty={this.state.qty}
+          value={this.state.value}
+          onQtyChange={this.onQtyChange}
+          buyShare={this.buyShare}
+        />
+        <Line data={data} />
+      </Drawer>
+      <footer style={{backgroundColor:'yellow'}} >StockCards 2018 by Robbie Cheng</footer>
     </div>
     )
   }

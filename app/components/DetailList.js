@@ -7,19 +7,19 @@ const style = {
   marginLeft: 40
 }
 
-const DetailList = () => (
+const DetailList = (props) => (
   <div style={style}>
     <List style={style}>
-      <ListItem primaryText="30000" secondaryText="Cash Account"/>
-      <ListItem primaryText="10000" secondaryText="Profit" />
+      <ListItem primaryText={'$'+props.cashAccount.toFixed(2)} secondaryText="Cash Account"/>
+      <ListItem primaryText={'$'+props.profit.toFixed(2)} secondaryText="Profit" />
     </List>
     <List style={style}>
-      <ListItem primaryText="80000" secondaryText="Stock Value" />
-      <ListItem primaryText="6/6" secondaryText="Stocks Holding" />   
+      <ListItem primaryText={'$'+props.stockValue.toFixed(2)} secondaryText="Stock Value" />
+      <ListItem primaryText={props.holding+'/6'} secondaryText="Stocks Holding" />   
     </List>
     <List style={style}>
-      <ListItem primaryText="2" secondaryText="Ranking" />
-      <ListItem primaryText="1" secondaryText="Level" />
+      <ListItem primaryText="N/A" secondaryText="Ranking" />
+      <ListItem primaryText={'$'+(props.cashAccount+props.stockValue)} secondaryText="Total Asset" />
     </List>
     <Divider />
   </div>
