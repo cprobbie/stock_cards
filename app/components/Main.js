@@ -18,7 +18,7 @@ export default function Main (props){
           cashAccount={props.cashAccount}
           stockValue={props.stockValue}
           profit={props.profit}
-          holding={props.holding}
+          codes={codes}
         />
       </div>
       <div className="assets">
@@ -28,9 +28,9 @@ export default function Main (props){
             return <Card 
             key={index} 
             index={index} 
-            amount={amount} 
+            // amount={amount} 
             codes={codes}
-            updateCards={props.updateCards}
+            holdingObj={holdingObj}
             />
           })}
         </div>
