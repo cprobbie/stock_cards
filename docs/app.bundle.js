@@ -177,8 +177,8 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
   handleToggle() {
     console.log(this.state.input);
     // const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    let localDomain = 'http://localhost:4567/quote/' + this.state.input;
-    let hostedDomain = 'http://stockcards-backend.herokuapp.com/quote/' + this.state.input;
+    let localDomain = 'https://localhost:4567/quote/' + this.state.input;
+    let hostedDomain = 'https://stockcards-backend.herokuapp.com/quote/' + this.state.input;
     fetch(hostedDomain).then(res => res.json()).then(res => this.setState({
       symbol: res.symbol,
       name: res.name,
@@ -210,8 +210,8 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     console.log('drawn!');
     const STOCKS = ['agl', 'amc', 'amp', 'anz', 'apa', 'all', 'asx', 'azj', 'bhp', 'bxb', 'ctx', 'cba', 'cpu', 'csl', 'dxs', 'fmg', 'gmg', 'gpt', 'ipl', 'iag', 'jhx', 'llc', 'mqg', 'mpl', 'mgr', 'nab', 'ncm', 'osh', 'ori', 'org', 'qan', 'qbe', 'rhc', 'rio', 'sto', 'scg', 'shl', 's32', 'sgp', 'sun', 'syd', 'tls', 'tcl', 'twe', 'vcx', 'wes', 'wfd', 'wbc', 'wpl', 'wow'];
     let randomStock = STOCKS[Math.floor(Math.random() * 50)];
-    let localDomain = 'http://localhost:4567/quote/' + 'asx:' + randomStock;
-    let hostedDomain = 'http://stockcards-backend.herokuapp.com/quote/' + 'asx:' + randomStock;
+    let localDomain = 'https://localhost:4567/quote/' + 'asx:' + randomStock;
+    let hostedDomain = 'https://stockcards-backend.herokuapp.com/quote/' + 'asx:' + randomStock;
     fetch(hostedDomain).then(res => res.json()).then(res => this.setState({
       symbol: res.symbol,
       name: res.name,
@@ -554,7 +554,7 @@ function BigCard(props) {
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1519948806636
+      // 1519949593830
       var cssReload = require("../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -757,7 +757,7 @@ function BigCardTrade(props) {
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1519948806648
+      // 1519949593812
       var cssReload = require("../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -806,7 +806,7 @@ class Card extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
   componentDidMount() {
     let code = this.props.codes[this.props.index];
-    let hostedDomain = 'http://stockcards-backend.herokuapp.com/quote/' + code;
+    let hostedDomain = 'https://stockcards-backend.herokuapp.com/quote/' + code;
     fetch(hostedDomain).then(res => res.json()).then(res => this.setState({
       symbol: res.symbol,
       name: res.name,
@@ -952,7 +952,7 @@ class Card extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1519948806676
+      // 1519949593848
       var cssReload = require("../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1284,7 +1284,7 @@ function Main(props) {
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1519948806660
+      // 1519949593839
       var cssReload = require("../../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1375,7 +1375,7 @@ if (false) {
 
 // removed by extract-text-webpack-plugin
     if(false) {
-      // 1519948806609
+      // 1519949593822
       var cssReload = require("../node_modules/css-hot-loader/hotModuleReplacement.js")(module.id, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
