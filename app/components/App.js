@@ -85,8 +85,8 @@ export default class App extends React.Component {
   handleToggle() {
     console.log(this.state.input);
     // const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    let localDomain = 'http://localhost:4567/quote/' + this.state.input
-    let hostedDomain = 'http://stockcards-backend.herokuapp.com/quote/' + this.state.input
+    let localDomain = 'https://localhost:4567/quote/' + this.state.input
+    let hostedDomain = 'https://stockcards-backend.herokuapp.com/quote/' + this.state.input
     fetch(hostedDomain)
     .then(res => res.json())
     .then(res => this.setState({
@@ -123,8 +123,8 @@ export default class App extends React.Component {
     console.log('drawn!')
     const STOCKS = ['agl', 'amc', 'amp', 'anz', 'apa', 'all', 'asx', 'azj', 'bhp', 'bxb', 'ctx', 'cba', 'cpu', 'csl', 'dxs', 'fmg','gmg', 'gpt', 'ipl', 'iag', 'jhx', 'llc', 'mqg', 'mpl', 'mgr', 'nab', 'ncm', 'osh', 'ori', 'org', 'qan', 'qbe', 'rhc', 'rio', 'sto', 'scg', 'shl', 's32', 'sgp', 'sun', 'syd', 'tls', 'tcl', 'twe', 'vcx', 'wes', 'wfd', 'wbc', 'wpl', 'wow'] ;
     let randomStock = STOCKS[Math.floor((Math.random() * 50))];
-    let localDomain = 'http://localhost:4567/quote/' + 'asx:' + randomStock
-    let hostedDomain = 'http://stockcards-backend.herokuapp.com/quote/' + 'asx:' + randomStock
+    let localDomain = 'https://localhost:4567/quote/' + 'asx:' + randomStock
+    let hostedDomain = 'https://stockcards-backend.herokuapp.com/quote/' + 'asx:' + randomStock
     fetch(hostedDomain)
       .then(res => res.json())
       .then(res => this.setState({

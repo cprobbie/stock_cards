@@ -22,7 +22,7 @@ export default class Card extends React.Component {
 
   componentDidMount(){
     let code = this.props.codes[this.props.index]
-    let hostedDomain = 'http://stockcards-backend.herokuapp.com/quote/' + code
+    let hostedDomain = 'https://stockcards-backend.herokuapp.com/quote/' + code
     fetch(hostedDomain)
       .then(res => res.json())
       .then(res => this.setState({
