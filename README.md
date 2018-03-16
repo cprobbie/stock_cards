@@ -1,45 +1,23 @@
-# webpack react hot reload starter
+# StockCards App
+## Technologies
+- ReactJS
+- Bootstrap
+- SemanticUI
+- MaterialUI
+- Sinatra
 
-All you need, none you don't. 
+<a href="https://cprobbie23.github.io/stock_cards/">Launch the app</a>
 
-Sensible starter with hot reload to try react with webpack 3 that deploys straight to github pages.
+## Screenshot of the App
+<img src="./app/components/image/screenshot.png">
 
-## Based on
+## Introduction
+StockCards is an educational app that was designed to teach future investors who are interested in Australian Stock Market. I chose to include the ASX50 stocks to start with and encourage user to research before making any purchases.
 
-1. Bundler: [Webpack](http://webpack.github.io/docs/), [Babel](https://babeljs.io)
-2. Language: [ES2015](https://babeljs.io/docs/learn-es2015/)
-3. Library: [React](https://reactjs.org/), [Sass](http://sass-lang.com/), [Mocha](https://mochajs.org)
+## How to Play
+Fetching stock data from Google Finance, this app allows you to view the data of any stocks by entering the stock code. However, you can only buy the stocks that you draw by clicking on the DRAW card. Each time you click on the DRAW card, you will be shown the information of a random stock.
 
-## Usage
-
-1. clone this repo
-```
-git clone THIS_GIT_REPO_URL
-```
-
-2. install dependencies using npm or yarn
-```
-npm install
-```
-or
-```
-yarn install
-```
-
-3. start dev server and start coding in `/app`
-```
-npm start
-```
-
-## build and deploy with github pages
-
-Github pages support hosting your site in a docs directory within your repo. Simply run the following command to build your site into docs directory and update the source setting on github. 
-
-```
-npm run build
-```
-
-## run tests in `/test`
-```
-npm test
-``` 
+## Future works
+- SELL feature
+- Update stock prices every 10 seconds
+- Sum up the values of the stocks owned and add up to the total asset
